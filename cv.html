@@ -8,7 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- File CSS eksternal -->
-    <link rel="stylesheet" href="cv.css">
+    <style>
+    /* Critical layout guard: prevents the profile image from expanding before cv.css loads. */
+    .profile-picture{flex:0 0 108px;width:108px;max-width:108px}
+    .profile-picture img{display:block;width:108px;height:108px;max-width:108px;object-fit:cover}
+    .a4-container{width:min(210mm,100%);margin-inline:auto}
+    img{max-width:100%}
+  </style>
+  <link rel="stylesheet" href="cv.css?v=3">
   </head>
   <body>
     <!-- Tombol Cetak (ikon) ditempatkan di pojok kanan atas -->
