@@ -864,8 +864,6 @@ body.motion-off .reveal {
 
   .hero {
     min-height: auto;
-    grid-template-columns: 1fr;
-    align-items: start;
     padding-top: 58px;
   }
 
