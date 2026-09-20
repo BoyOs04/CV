@@ -15,7 +15,8 @@ let motionEnabled = !prefersReducedMotion;
 let renderer = null;
 let scene = null;
 let camera = null;
-let timer = null;
+let elapsedSeconds = 0;
+let lastFrameTime = 0;
 let points = null;
 let knot = null;
 let ring = null;
@@ -122,10 +123,14 @@ const updateThreeSize = () => {
 const animateThree = (timestamp) => {
   if (!renderer || !scene || !camera || !timer) return;
 
-  timer.update(timestamp);
+  const now = typeof timestamp === "number" ? timestamp : performance.now();
+  if (!lastFrameTime) lastFrameTime = now;
+  const delta = Math.min(0.05, Math.max(0, (now - lastFrameTime) / 1000));
+  lastFrameTime = now;
 
   if (motionEnabled) {
-    const elapsed = timer.getElapsed();
+    elapsedSeconds += delta;
+    const elapsed = elapsedSeconds;
 
     const x = pointerCurrent.x;
     const y = pointerCurrent.y;
@@ -246,8 +251,7 @@ const createThreeBackground = () => {
     resizeHandler = updateThreeSize;
     window.addEventListener("resize", resizeHandler, { passive: true });
 
-    timer = new THREE.Timer();
-    timer.connect(document);
+    lastFrameTime = 0;
 
     const syncPointer = () => {
       pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.035;
@@ -290,9 +294,6 @@ window.addEventListener("beforeunload", () => {
   motionQuery.removeEventListener?.("change", motionMediaHandler);
   if (resizeHandler) window.removeEventListener("resize", resizeHandler);
   if (pointerHandler) window.removeEventListener("pointermove", pointerHandler);
-
-  timer?.disconnect();
-  timer?.dispose();
 
   points?.geometry.dispose();
   points?.material.dispose();
