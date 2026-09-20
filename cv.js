@@ -1,7 +1,22 @@
-// cv.js - Menangani interaksi tombol cetak
-document.addEventListener('DOMContentLoaded', function() {
-  const printButton = document.getElementById('printButton');
-  if (printButton) {
-    printButton.addEventListener('click', function() {
+// cv.js — print interaction
+(() => {
+  "use strict";
+
+  const init = () => {
+    const printButton = document.getElementById("printButton");
+
+    if (!printButton) {
+      return;
+    }
+
+    printButton.addEventListener("click", () => {
       window.print();
-});
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
