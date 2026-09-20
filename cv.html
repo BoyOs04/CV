@@ -2,12 +2,298 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=./index.html">
-  <meta name="robots" content="noindex">
-  <link rel="canonical" href="./index.html">
-  <title>CV Ryo Claudio Linelejan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="CV online Ryo Claudio Linelejan — Teknik Komputer dan Jaringan, networking, troubleshooting, dan web development.">
+  <meta name="color-scheme" content="dark light">
+  <title>Ryo Claudio Linelejan — CV</title>
+
+  <!-- Three.js 0.186.0: current stable release verified from the official project/npm. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js"
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="cv.css">
+  <script type="module" src="cv.js"></script>
 </head>
 <body>
-  <p>Memuat CV… <a href="./index.html">Buka CV</a></p>
+  <a class="skip-link" href="#content">Lewati ke isi</a>
+
+  <div id="three-bg" class="three-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Navigasi utama">
+      <a class="brand" href="./index.html" aria-label="Kembali ke menu utama">
+        <span class="brand-mark">RC</span>
+        <span class="brand-copy">
+          <strong>Ryo Claudio</strong>
+          <small>Curriculum Vitae</small>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="./index.html">Menu</a>
+        <a href="./version-2.html">Versi 02</a>
+        <a href="#profil">Profil</a>
+        <a href="#pendidikan">Pendidikan</a>
+        <a href="#keahlian">Keahlian</a>
+        <a href="#sertifikat">Sertifikat</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="printButton" type="button" aria-label="Cetak CV" title="Cetak CV">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <path d="M6 14h12v7H6z"/>
+          </svg>
+        </button>
+        <button class="icon-button" id="motionButton" type="button" aria-pressed="false" aria-label="Matikan animasi" title="Matikan animasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section id="top" class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="status-dot"></span> Teknik Komputer &amp; Jaringan</p>
+        <h1>Ryo Claudio<br><span>Linelejan</span></h1>
+        <p class="hero-lead">
+          Profil profesional dengan fokus pada jaringan komputer, troubleshooting,
+          pemeliharaan perangkat, dan pengembangan web dasar.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#kontak">Hubungi Saya</a>
+          <button class="button button-ghost" id="scrollSkills" type="button">Lihat Keahlian</button>
+        </div>
+
+        <div class="hero-meta">
+          <span>Minahasa, Sulawesi Utara</span>
+          <span>Junior Network Administrator</span>
+          <span>Junior Web Developer</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="orbital orbital-one"></div>
+        <div class="orbital orbital-two"></div>
+        <div class="hero-photo-wrap">
+          <img src="foto.png" alt="" width="420" height="420">
+          <div class="photo-glow"></div>
+        </div>
+        <div class="floating-card floating-card-top">
+          <span class="floating-label">FOCUS</span>
+          <strong>NETWORK</strong>
+        </div>
+        <div class="floating-card floating-card-bottom">
+          <span class="floating-label">STACK</span>
+          <strong>WEB + IT</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-grid shell">
+      <aside id="profil" class="side-column">
+        <section class="panel reveal">
+          <div class="panel-kicker">01 / PROFIL</div>
+          <h2>Ringkasan</h2>
+          <p>
+            Latar belakang Teknik Komputer dan Jaringan dengan pengalaman belajar
+            di bidang instalasi sistem operasi, konfigurasi jaringan, troubleshooting,
+            pemeliharaan PC, serta pemrograman dasar.
+          </p>
+        </section>
+
+        <section id="kontak" class="panel reveal">
+          <div class="panel-kicker">05 / KONTAK</div>
+          <h2>Kontak</h2>
+          <div class="contact-list">
+            <a href="mailto:ryoline.kerj@gmail.com" class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <span>
+                <small>Email</small>
+                <strong>ryoline.kerj@gmail.com</strong>
+              </span>
+            </a>
+
+            <a href="mailto:ryolinelejan01@gmail.com" class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <span>
+                <small>Email</small>
+                <strong>ryolinelejan01@gmail.com</strong>
+              </span>
+            </a>
+
+            <a href="tel:+628981868117" class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 3h3l2 5-2 2c1.2 2.4 2.6 3.8 5 5l2-2 5 2v3c0 1.1-.9 2-2 2C10.3 20 4 13.7 4 4.9 4 3.8 4.9 3 6 3z"/></svg>
+              </span>
+              <span>
+                <small>Telepon</small>
+                <strong>0898 1868 117</strong>
+              </span>
+            </a>
+
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+              </span>
+              <span>
+                <small>Lokasi</small>
+                <strong>Desa Touliang, Kakas Barat, Minahasa</strong>
+              </span>
+            </div>
+
+            <a href="https://github.com/BoyOs04" target="_blank" rel="noopener noreferrer" class="contact-item">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-2 .9-2.8-.1-.2-.4-1.3.1-2.7 0 0 .8-.3 2.8 1.1a9.4 9.4 0 0 1 5.1 0c2-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.5.1 2.7.6.8.9 1.7.9 2.8 0 3.8-2.3 4.6-4.5 4.9.3.3.6.9.6 1.8V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+              </span>
+              <span>
+                <small>GitHub</small>
+                <strong>github.com/BoyOs04</strong>
+              </span>
+            </a>
+          </div>
+        </section>
+      </aside>
+
+      <div class="main-column">
+        <section id="pendidikan" class="panel reveal">
+          <div class="panel-kicker">02 / PENDIDIKAN</div>
+          <h2>Riwayat Pendidikan</h2>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-head">
+                  <div>
+                    <h3>SMK N 1 Kakas</h3>
+                    <p>Teknik Komputer dan Jaringan</p>
+                  </div>
+                  <span class="timeline-year">2016 — 2018</span>
+                </div>
+                <p>
+                  Pendidikan kejuruan dengan fokus pada dasar jaringan komputer,
+                  perangkat keras, sistem operasi, dan praktik troubleshooting.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="timeline-head">
+                  <div>
+                    <h3>SMP N 2 Kakas</h3>
+                    <p>Sekolah Menengah Pertama</p>
+                  </div>
+                  <span class="timeline-year">2012 — 2015</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="keahlian" class="panel reveal">
+          <div class="panel-kicker">03 / KEAHLIAN</div>
+          <h2>Technical Skills</h2>
+
+          <div class="skills-grid">
+            <article class="skill-card">
+              <span class="skill-number">01</span>
+              <h3>Networking</h3>
+              <p>LAN/WAN, instalasi kabel, konfigurasi router, dan troubleshooting jaringan.</p>
+              <div class="skill-tags"><span>Router</span><span>LAN/WAN</span><span>TCP/IP</span></div>
+            </article>
+
+            <article class="skill-card">
+              <span class="skill-number">02</span>
+              <h3>PC &amp; Hardware</h3>
+              <p>Pemeliharaan komputer dan troubleshooting perangkat keras maupun perangkat lunak.</p>
+              <div class="skill-tags"><span>Maintenance</span><span>Repair</span><span>BIOS</span></div>
+            </article>
+
+            <article class="skill-card">
+              <span class="skill-number">03</span>
+              <h3>Operating Systems</h3>
+              <p>Instalasi Windows/Linux, konfigurasi BIOS, partisi disk, dan setup dasar sistem.</p>
+              <div class="skill-tags"><span>Windows</span><span>Linux</span><span>Setup</span></div>
+            </article>
+
+            <article class="skill-card">
+              <span class="skill-number">04</span>
+              <h3>Web &amp; Programming</h3>
+              <p>Pemrograman dasar serta pengembangan antarmuka web dan pemahaman struktur aplikasi.</p>
+              <div class="skill-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            </article>
+
+            <article class="skill-card">
+              <span class="skill-number">05</span>
+              <h3>Microsoft Office</h3>
+              <p>Word, Excel, PowerPoint, dan Access untuk dokumen, data, presentasi, serta laporan.</p>
+              <div class="skill-tags"><span>Word</span><span>Excel</span><span>PowerPoint</span></div>
+            </article>
+
+            <article class="skill-card">
+              <span class="skill-number">06</span>
+              <h3>Adaptasi Teknologi</h3>
+              <p>Mempelajari teknologi baru dan menyesuaikan workflow sesuai kebutuhan teknis.</p>
+              <div class="skill-tags"><span>Learning</span><span>Problem Solving</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sertifikat" class="panel reveal">
+          <div class="panel-kicker">04 / SERTIFIKAT</div>
+          <h2>Sertifikasi</h2>
+
+          <div class="certificate-list">
+            <article class="certificate-card">
+              <div class="certificate-icon">01</div>
+              <div>
+                <h3>Junior Network Administrator</h3>
+                <p>Sertifikat kompetensi — 2023</p>
+              </div>
+              <span class="certificate-badge">NETWORK</span>
+            </article>
+
+            <article class="certificate-card">
+              <div class="certificate-icon">02</div>
+              <div>
+                <h3>Junior Web Developer</h3>
+                <p>Sertifikat kompetensi — 2023</p>
+              </div>
+              <span class="certificate-badge">WEB</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer shell">
+    <span>Ryo Claudio Linelejan</span>
+    <span>CV Online · 2026</span>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <noscript>
+    <div class="noscript-notice">JavaScript dinonaktifkan. Isi CV tetap tersedia, tetapi animasi Three.js tidak akan tampil.</div>
+  </noscript>
 </body>
 </html>
