@@ -1,119 +1,593 @@
-/* cv.css */
-/* Reset dasar */
-  box-sizing: border-box;
-/* Variabel warna */
+/* CV — Version 01
+   Custom responsive stylesheet.
+   Keeps the original HTML structure and visual language,
+   with a modern container/grid system and robust A4 print layout.
+*/
+
 :root {
-  --primary-bg: #F5DEB3;      /* Latar belakang utama (wheat) */
-  --header-bg: #fff;          /* Latar area kertas */
-  --accent-color: #8B4513;    /* Warna aksen */
-  --profile-border: #E0B07A;  /* Warna border profil dan elemen pendukung */
-/* Body */
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--primary-bg);
-  color: var(--accent-color);
-/* Tombol Cetak (ikon) di pojok kanan atas */
+  --page-bg: #f5deb3;
+  --paper: #ffffff;
+  --paper-soft: #fcfaf6;
+  --accent: #8b4513;
+  --accent-light: #e0b07a;
+  --accent-pale: #f4e4cc;
+  --text: #2a211b;
+  --muted: #6e6258;
+  --line: #eaded0;
+  --shadow: 0 18px 50px rgba(70, 42, 20, 0.16);
+  --radius: 12px;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.42), transparent 28%),
+    radial-gradient(circle at 90% 90%, rgba(224, 176, 122, 0.24), transparent 30%),
+    var(--page-bg);
+  color: var(--text);
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: var(--accent);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+/* ---------- Print button ---------- */
+
 .print-icon {
-  top: 20px;
-  right: 20px;
-  background-color: transparent;
-  border: none;
-  font-size: 1.5em;
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 100;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(139, 69, 19, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(70, 42, 20, 0.12);
   cursor: pointer;
-  color: var(--accent-color);
-  z-index: 1000;
-  transition: color 0.3s ease;
-.print-icon:hover {
-  color: var(--profile-border);
-/* Container dengan ukuran A4 */
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.print-icon:hover,
+.print-icon:focus-visible {
+  transform: translateY(-2px);
+  background: var(--paper);
+  border-color: var(--accent-light);
+  box-shadow: 0 12px 30px rgba(70, 42, 20, 0.16);
+  outline: none;
+}
+
+.print-icon i {
+  font-size: 17px;
+}
+
+/* ---------- A4 sheet ---------- */
+
 .a4-container {
-  width: 210mm;
-  height: 297mm; /* Tetapkan tinggi maksimum A4 */
-  margin: 40px auto;
-  background-color: var(--header-bg);
-  padding: 15mm; /* Kurangi padding sedikit agar lebih banyak ruang */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden; /* Pastikan konten tidak meluber */
-/* Header dengan tampilan template */
+  width: min(210mm, 100%);
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 15mm;
+  background: var(--paper);
+  border: 1px solid rgba(139, 69, 19, 0.09);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Header ---------- */
+
 .cv-header {
-  border-bottom: 3px solid var(--profile-border);
-  margin-bottom: 15px; /* Kurangi margin bawah */
-  padding-top: 0mm; /* Tambah ruang di atas foto */
-  padding-bottom: 10px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid var(--accent-light);
+}
+
 .header-banner {
-  padding: 12px;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, #fffdf9 0%, var(--paper-soft) 55%, #f9efe0 100%);
+}
+
 .profile-picture {
-  flex-shrink: 0;
-  margin-right: 20px;
+  flex: 0 0 108px;
+  width: 108px;
+}
+
 .profile-picture img {
-  width: 100px;
-  height: 100px;
-  border: 3px solid var(--profile-border);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
+  border: 4px solid var(--accent-light);
+  border-radius: 12px;
+  background: #eee;
+  box-shadow: 0 8px 22px rgba(70, 42, 20, 0.14);
+}
+
+.header-text {
+  min-width: 0;
+}
+
 .header-text h1 {
-  font-size: 2em;
-/* Section utama */
-main section, aside {
-  margin-bottom: 15px; /* Kurangi jarak antar section */
-main section h2, aside h2 {
-  font-size: 1.5em;
-  border-bottom: 2px solid var(--profile-border);
-  padding-bottom: 5px;
-  margin-bottom: 8px; /* Kurangi margin bawah */
-/* Section Kontak */
+  margin: 0;
+  color: var(--accent);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.header-text::after {
+  content: "Teknik Komputer dan Jaringan";
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- Content grid ---------- */
+
+.a4-container > main {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.32fr) minmax(0, 0.68fr);
+  grid-template-areas:
+    "contact education"
+    "contact skills"
+    "contact certificates";
+  gap: 0 34px;
+  padding-top: 24px;
+}
+
+.a4-container > main > .contact {
+  grid-area: contact;
+}
+
+.a4-container > main > .education {
+  grid-area: education;
+}
+
+.a4-container > main > .skills {
+  grid-area: skills;
+}
+
+.a4-container > main > .certificates {
+  grid-area: certificates;
+}
+
+main section,
+main aside {
+  min-width: 0;
+  margin: 0 0 22px;
+}
+
+main section:last-child,
+main aside:last-child {
+  margin-bottom: 0;
+}
+
+main section h2,
+aside h2 {
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-light);
+  color: var(--accent);
+  font-size: 1.03rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+.education,
+.skills,
+.certificates {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.certificates {
+  border-bottom: 0;
+}
+
+/* ---------- Contact ---------- */
+
+.contact {
+  align-self: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper-soft);
+}
+
 .contact ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
-  padding-left: 0;
+}
+
 .contact li {
-  margin-bottom: 6px; /* Kurangi jarak antar item */
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 9px;
+  align-items: start;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.contact li:last-child {
+  border-bottom: 0;
+}
+
 .contact li i {
-  margin-right: 10px;
-  min-width: 20px;
+  padding-top: 3px;
+  color: var(--accent);
   text-align: center;
-/* Email */
+}
+
+.emails {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
 .emails a {
-  color: var(--accent-color);
+  overflow-wrap: anywhere;
+  color: var(--accent);
   text-decoration: none;
-  margin-bottom: 4px; /* Kurangi jarak antar email */
-.emails a:hover {
+}
+
+.emails a:hover,
+.emails a:focus-visible {
   text-decoration: underline;
-/* Pendidikan, Keterampilan, Sertifikat */
+  outline: none;
+}
+
+/* ---------- Education ---------- */
+
 .education ol,
 .skills ol,
 .certificates ol {
-  list-style-position: inside;
-  margin-left: 20px;
+  margin: 0;
+  padding-left: 1.45rem;
+}
+
 .education li,
 .skills li,
 .certificates li {
-  margin-bottom: 8px; /* Kurangi jarak antar item */
-.education li h3 {
-  font-size: 1.2em;
-  margin-bottom: 4px; /* Kurangi margin bawah */
+  margin: 0 0 10px;
+  padding-left: 5px;
+  color: var(--muted);
+}
+
+.education li:last-child,
+.skills li:last-child,
+.certificates li:last-child {
+  margin-bottom: 0;
+}
+
+.education li::marker,
+.skills li::marker,
+.certificates li::marker {
+  color: var(--accent);
   font-weight: 700;
-/* Responsivitas */
-@media (max-width: 768px) {
+}
+
+.education li h3 {
+  margin: 0 0 3px;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.education li p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- Skills ---------- */
+
+.skills ol {
+  display: grid;
+  gap: 9px;
+}
+
+.skills li {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdfa;
+  font-size: 0.87rem;
+}
+
+/* ---------- Certificates ---------- */
+
+.certificates ol {
+  display: grid;
+  gap: 10px;
+}
+
+.certificates li {
+  margin: 0;
+  padding: 11px 12px;
+  border-left: 4px solid var(--accent-light);
+  background: var(--paper-soft);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  body {
+    padding: 24px 14px;
+  }
+
   .a4-container {
-    width: 95%;
-    padding: 10mm;
-  
-  .header-banner {
-    align-items: center;
-    text-align: center;
-  
-  .profile-picture {
-    margin-right: 0;
-    margin-bottom: 10px;
-/* Optimalisasi untuk Cetak */
+    width: min(100%, 820px);
+    min-height: 0;
+    padding: 28px;
+  }
+
+  .a4-container > main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "contact contact"
+      "education education"
+      "skills certificates";
+    gap: 22px 26px;
+  }
+
+  .contact {
+    width: 100%;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+  body {
+    padding: 0;
+  }
+
   .print-icon {
-    display: none;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+  }
+
   .a4-container {
-    margin: 0;
-    padding: 10mm;
-    width: 210mm;
-    height: 297mm;
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px;
+    border: 0;
     border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header-banner {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .profile-picture,
+  .profile-picture img {
+    width: 92px;
+    height: 92px;
+  }
+
+  .header-text h1 {
+    font-size: clamp(1.8rem, 10vw, 2.4rem);
+  }
+
+  .header-text::after {
+    font-size: 0.82rem;
+  }
+
+  .a4-container > main {
+    display: block;
+    padding-top: 20px;
+  }
+
+  main section,
+  main aside {
+    margin-bottom: 18px;
+  }
+
+  .contact {
+    padding: 14px;
+  }
+
+  .contact li,
+  .skills li,
+  .certificates li {
+    font-size: 0.86rem;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .print-icon {
+    transition: none;
+  }
+}
+
+/* ---------- A4 print ---------- */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-icon {
+    display: none !important;
+  }
+
+  .a4-container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 12mm;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
   .cv-header {
-    padding-top: 0mm; /* Pastikan margin atas cukup saat cetak */
+    padding-bottom: 10px;
+  }
+
+  .header-banner {
+    padding: 8px 10px;
+  }
+
+  .profile-picture,
+  .profile-picture img {
+    width: 82px;
+    height: 82px;
+  }
+
+  .header-text h1 {
+    font-size: 25px;
+  }
+
+  .header-text::after {
+    margin-top: 4px;
+    font-size: 9px;
+  }
+
+  .a4-container > main {
+    grid-template-columns: 32% 68%;
+    grid-template-areas:
+      "contact education"
+      "contact skills"
+      "contact certificates";
+    gap: 0 8mm;
+    padding-top: 12px;
+  }
+
+  main section,
+  main aside {
+    margin-bottom: 10px;
+  }
+
+  main section h2,
+  aside h2 {
+    margin-bottom: 7px;
+    padding-bottom: 4px;
+    font-size: 10px;
+  }
+
+  .contact {
+    padding: 9px;
+  }
+
+  .contact li {
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 6px;
+    padding: 6px 0;
+    font-size: 8px;
+  }
+
+  .education ol,
+  .skills ol,
+  .certificates ol {
+    padding-left: 15px;
+  }
+
+  .education li,
+  .skills li,
+  .certificates li {
+    margin-bottom: 6px;
+    padding-left: 2px;
+    font-size: 8px;
+  }
+
+  .education li h3 {
+    font-size: 9px;
+  }
+
+  .education li p {
+    font-size: 8px;
+  }
+
+  .skills ol,
+  .certificates ol {
+    gap: 5px;
+  }
+
+  .skills li,
+  .certificates li {
+    padding: 6px 7px;
+  }
 }
