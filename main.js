@@ -260,3 +260,151 @@ const initThree = () => {
 };
 
 initThree();
+
+/* ---------- Drag & drop layout editor ---------- */
+const layoutKey = "ryo-cv-main-layout-v1";
+const editor = document.getElementById("editorBar");
+const openEditor = document.getElementById("openEditor");
+const closeEditor = document.getElementById("closeEditor");
+const saveLayout = document.getElementById("saveLayout");
+const resetLayout = document.getElementById("resetLayout");
+const editorStatus = document.getElementById("editorStatus");
+
+const editableSections = [...document.querySelectorAll(".editable-section[data-layout-id]")];
+const sortableContainers = [...document.querySelectorAll(".sortable-container[data-sortable]")];
+const instances = [];
+
+const orderOf = (container, selector) =>
+  [...container.children]
+    .map((element) => element.dataset.layoutId || element.dataset.cardId || element.id || "")
+    .filter(Boolean);
+
+const snapshotLayout = () => ({
+  sections: orderOf(document.querySelector("main"), "section"),
+  versionCards: orderOf(document.getElementById("versionGrid"), "article"),
+  profileCards: orderOf(document.getElementById("profileGrid"), "article")
+});
+
+const applyOrder = (container, ids) => {
+  if (!container || !Array.isArray(ids) || !ids.length) return;
+
+  const elements = [...container.children];
+  const byId = new Map(
+    elements.map((element) => [
+      element.dataset.layoutId || element.dataset.cardId || element.id || "",
+      element
+    ])
+  );
+
+  ids.forEach((id) => {
+    const element = byId.get(id);
+    if (element) container.appendChild(element);
+  });
+};
+
+const persistLayout = (announce = true) => {
+  const snapshot = snapshotLayout();
+  localStorage.setItem(layoutKey, JSON.stringify(snapshot));
+  if (announce && editorStatus) {
+    editorStatus.textContent = "Tata letak tersimpan di browser ini.";
+  }
+};
+
+const restoreLayout = () => {
+  try {
+    const raw = localStorage.getItem(layoutKey);
+    if (!raw) return false;
+
+    const saved = JSON.parse(raw);
+    applyOrder(document.querySelector("main"), saved.sections);
+    applyOrder(document.getElementById("versionGrid"), saved.versionCards);
+    applyOrder(document.getElementById("profileGrid"), saved.profileCards);
+    return true;
+  } catch (error) {
+    console.warn("Saved layout could not be restored:", error);
+    return false;
+  }
+};
+
+const setEditorMode = (enabled) => {
+  document.body.classList.toggle("editor-mode", enabled);
+  if (editor) editor.hidden = !enabled;
+  if (enabled) {
+    document.documentElement.style.scrollBehavior = "auto";
+    openEditor?.blur();
+    if (editorStatus) {
+      editorStatus.textContent = "Drag item untuk memindahkan. Tekan Simpan setelah selesai.";
+    }
+  } else {
+    document.documentElement.style.removeProperty("scroll-behavior");
+  }
+};
+
+const makeSortable = (element, options = {}) => {
+  if (!element || !window.Sortable) return null;
+
+  const instance = new window.Sortable(element, {
+    animation: 220,
+    easing: "cubic-bezier(.2,.7,.2,1)",
+    ghostClass: "sortable-ghost",
+    chosenClass: "sortable-chosen",
+    dragClass: "sortable-drag",
+    forceFallback: false,
+    delayOnTouchOnly: true,
+    delay: 80,
+    touchStartThreshold: 4,
+    ...options,
+    onEnd: () => {
+      if (editorStatus) editorStatus.textContent = "Urutan berubah. Tekan Simpan untuk menyimpannya.";
+    }
+  });
+
+  instances.push(instance);
+  return instance;
+};
+
+const initLayoutEditor = () => {
+  restoreLayout();
+
+  if (!window.Sortable) {
+    console.warn("SortableJS is unavailable; layout editor disabled.");
+    return;
+  }
+
+  makeSortable(
+    document.querySelector("main"),
+    {
+      draggable: ".editable-section",
+      handle: ".section-head",
+      filter: "#top",
+      preventOnFilter: false
+    }
+  );
+
+  sortableContainers.forEach((container) => {
+    makeSortable(container, {
+      draggable: ".version-card, .profile-panel",
+      group: { name: container.dataset.sortable, pull: false, put: false }
+    });
+  });
+};
+
+openEditor?.addEventListener("click", () => {
+  setEditorMode(true);
+});
+
+closeEditor?.addEventListener("click", () => {
+  persistLayout(false);
+  setEditorMode(false);
+});
+
+saveLayout?.addEventListener("click", () => {
+  persistLayout();
+});
+
+resetLayout?.addEventListener("click", () => {
+  localStorage.removeItem(layoutKey);
+  window.location.reload();
+});
+
+initLayoutEditor();
